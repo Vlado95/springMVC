@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>fitec</display-name>
-  <servlet>
-    <servlet-name>fitec</servlet-name>
-    <servlet-class>fitec.dba.servlet.FitecServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>fitec</servlet-name>
-    <url-pattern>/fitec</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Login</servlet-name>
-    <servlet-class>fitec.dba.servlet.ConnectionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/connection</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Auteur</servlet-name>
-    <servlet-class>fitec.dba.servlet.AuteurServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Auteur</servlet-name>
-    <url-pattern>/afficher</url-pattern>
-    <url-pattern>/creer</url-pattern>
-    <url-pattern>/effacer</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>jsp/connexion.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	
+	<display-name>fitec</display-name>
+	
+	
+	
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml
+        /WEB-INF/dispatcher-servlet.xml
+        </param-value>
+    </context-param>
+    
+ <!-- CONFIG Chargeur de contexte (ContextLoader) -->
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <!-- CONFIG DispatcherServlet -->
+    
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--         <init-param> -->
+<!-- 			<param-name>contextConfigLocation</param-name> -->
+			
+<!-- 		</init-param> -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>redirect.jsp</welcome-file>
+<!--      <welcome-file>index.html</welcome-file> -->
+    </welcome-file-list>
+
 </web-app>
