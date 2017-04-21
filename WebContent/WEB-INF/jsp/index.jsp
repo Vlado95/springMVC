@@ -12,11 +12,8 @@
     <h2>Welcome ${user.nom} ${user.prenom} !</h2>
     <nav>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/user/inscription.htm">Inscription</a></li>
             <li><a href="<%=request.getContextPath()%>/login">Login</a></li>
-            <li><a href="<%=request.getContextPath()%>/user/listeUser.htm">Les utilisateurs</a></li>
-            <li><a href="<%=request.getContextPath()%>/livre/ajoutLivre.htm">Ajouter un livre</a></li>
-            <li><a href="<%=request.getContextPath()%>/livre/lesLivres.htm">Les livres</a></li>
+            <li><a href="<%=request.getContextPath()%>/editeurs">Les Edtieurs</a></li>
         </ul>
     </nav>
     </body>

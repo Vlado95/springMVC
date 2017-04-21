@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import fitec.dao.IDao;
 import fitec.metier.Auteur;
@@ -19,6 +20,7 @@ import fitec.metier.User;
 //import fitec.dba.metier.User;
 
 @Component
+//@Service("hbnFactory")
 public class HbnFactory {
 
 	    private static SessionFactory sessionFactory ;
@@ -97,7 +99,7 @@ public class HbnFactory {
 
 		@Autowired
 		public  void setDaoUser(IDao<User> daoUser) {
-			this.daoUser = daoUser;
+			HbnFactory.daoUser = daoUser;
 		}
 		
 
@@ -109,11 +111,12 @@ public class HbnFactory {
 			HbnFactory.daoLivre = daoLivre;
 		}
 
-		public static IDao<Editeur> getDaoEditeur() {
+		public IDao<Editeur> getDaoEditeur() {
 			return daoEditeur;
 		}
 
-		public static void setDaoEditeur(IDao<Editeur> daoEditeur) {
+		@Autowired
+		public void setDaoEditeur(IDao<Editeur> daoEditeur) {
 			HbnFactory.daoEditeur = daoEditeur;
 		}
 

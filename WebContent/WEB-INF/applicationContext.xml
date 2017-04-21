@@ -50,6 +50,10 @@
 	<bean id="DaoAuteur" class="fitec.dao.HbnDaoAuteur">
 		<property name="sessionFactory" ref="sessionFactoryID"></property>
 	</bean>
+	
+	<bean id="DaoEditeur" class="fitec.dao.HbnDaoEditeur">
+		<property name="sessionFactory" ref="sessionFactoryID"></property>
+	</bean>
 
 	<bean id="DaoUser" class="fitec.dao.HbnDaoUser">
 		<property name="sessionFactory" ref="sessionFactoryID"></property>

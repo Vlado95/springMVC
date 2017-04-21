@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import fitec.dao.IDao;
+import fitec.metier.Editeur;
 import fitec.metier.User;
 import fitec.service.HbnFactory;
+import fitec.service.HbnFactory.DaoMetier;
 import fitec.validator.UserValidator;
 
 /**
@@ -27,13 +31,12 @@ import fitec.validator.UserValidator;
 /// @RequestMapping("/user")
 public class ConnexionController {
 
-    private HbnFactory factory;
-//    private ServiceUser service;
+	@Autowired
+    private HbnFactory hbnFactory;
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
-    	
         model.addAttribute("user", new User());
         return "/login";
     }
@@ -50,7 +53,7 @@ public class ConnexionController {
         	 return "/login";
         } 
     	
-    	user = factory.authenticate(user.getEmail(), user.getPassword());
+    	user = hbnFactory.authenticate(user.getEmail(), user.getPassword());
 
         if (user != null && user.getId() != 0) {
         	model.addAttribute("user", user);
@@ -68,34 +71,5 @@ public class ConnexionController {
     {
         binder.setValidator(new UserValidator());
     }
-
-//	public HbnFactory getFactory() {
-//		return factory;
-//	}
-
-//	@Autowired
-//	public void setFactory(HbnFactory factory) {
-//		this.factory = factory;
-//	}
-
-    
-    
-//    public ServiceUser getService() {
-//        return service;
-//    }
-//
-//    @Autowired
-//    public void setService(ServiceUser service) {
-//        this.service = service;
-//    }
-//   
-//    public FactoryDao getFactory() {
-//        return factory;
-//    }
-//
-//    @Autowired
-//    public void setFactory(FactoryDao factory) {
-//        this.factory = factory;
-//    }
 
 }

@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import fitec.dao.IDao;
 import fitec.service.HbnFactory;
 import fitec.metier.User;
 
+//@Repository
 public class HbnDaoUser implements IDao<User> {
 
 	private Session session ;

@@ -16,12 +16,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.loader.custom.Return;
+import org.springframework.stereotype.Repository;
 
 import fitec.dao.IDao;
 import fitec.metier.Editeur;
 import fitec.metier.Livre;
 import fitec.metier.User;
 
+//@Repository
 public class HbnDaoEditeur implements IDao<Editeur> {
 	
 	private static SessionFactory sessionFactory;
@@ -63,6 +65,7 @@ public class HbnDaoEditeur implements IDao<Editeur> {
 	public List<Editeur> selectAll() {
 		List<Editeur> editeurs = new ArrayList<Editeur>();
 		try {
+			session = getSession();
 			session.beginTransaction();
 			String query = "From Editeur ";
 			editeurs = session.createQuery(query).list();
