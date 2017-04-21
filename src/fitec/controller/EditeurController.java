@@ -25,6 +25,7 @@ import fitec.dao.IDao;
 import fitec.metier.Editeur;
 import fitec.service.HbnFactory;
 import fitec.service.HbnFactory.DaoMetier;
+import fitec.validator.EditeurValidator;
 
 //import fitec.dba.dao.IDao;
 //import fitec.dba.factory.HbnFactory.DaoMetier;
@@ -59,12 +60,12 @@ public class EditeurController {
 	@RequestMapping(value = "/ajoutEditeur", method = RequestMethod.POST)
 	public String addEditeur(Editeur editeur, BindingResult result) {
 
-		// EditeurValidator validator = new EditeurValidator();
+		 EditeurValidator validator = new EditeurValidator();
 
-		// validator.validate(livre, result);
-		// if (result.hasErrors()) {
-		// return "/editeur/ajoutEditeur";
-		// }
+		 validator.validate(editeur, result);
+		 if (result.hasErrors()) {
+		 return "/editeur/ajoutEditeur";
+		 }
 
 		IDao<Editeur> daoEditeur = (IDao<Editeur>) hbnFactory.getDAO(DaoMetier.Editeur);
 		daoEditeur.insert(editeur);
